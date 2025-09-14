@@ -33,7 +33,7 @@ const register = async (req, res) => {
     // so after registeration he can access data
     const user = await User.create(req.body);
     console.log(user,"new user");
-    
+
 
     const token = jwt.sign(
       { _id: user._id, emailId, role: "user" },
@@ -44,10 +44,11 @@ const register = async (req, res) => {
     );
     // res.cookie("token", token, { maxAge: 60 * 60 * 1000 }); //maxAge:max kitne time ke liye ye token rhega.(in msec)
     res.cookie("token", token, {
-      maxAge: 60 * 60 * 1000, // 1 hour in milliseconds
-      httpOnly: true, // prevents JS access to the cookie
-      sameSite: "lax", // controls cross-site sending of cookie
-      // secure: true,        // enable this if using HTTPS
+      httpOnly: true,
+      secure: process.env.NODE_ENV === "production",
+      sameSite: process.env.NODE_ENV === "production" ? "none" : "lax",
+      maxAge: 7 * 24 * 60 * 60 * 1000, // 7 days
+      domain: undefined,
     });
 
     const reply = {
@@ -75,7 +76,7 @@ const register = async (req, res) => {
 const login = async (req, res) => {
   try {
     console.log("Login attempt received:", { emailId: req.body.emailId, passwordLength: req.body.password?.length });
-    
+
     const { emailId, password } = req.body;
 
     if (!emailId) {
@@ -90,16 +91,16 @@ const login = async (req, res) => {
     console.log("Looking for user with emailId:", emailId);
     // Check if user exists with exact emailId
     const user = await User.findOne({ emailId: emailId.toLowerCase() });
-    
+
     // Also check all users for debugging
     const allUsers = await User.find({}, { emailId: 1, firstName: 1 });
     console.log("All users in database:", allUsers);
-    
+
     if (!user) {
       console.log("User not found for emailId:", emailId);
       throw new Error("Invalid Credentials");
     }
-    
+
     console.log("User found, checking password...");
     const match = await bcrypt.compare(password, user.password);
 
@@ -107,7 +108,7 @@ const login = async (req, res) => {
       console.log("Password mismatch for user:", emailId);
       throw new Error("Invalid Credentials");
     }
-    
+
     console.log("Login successful for user:", emailId);
 
     const token = jwt.sign(
@@ -119,10 +120,11 @@ const login = async (req, res) => {
     );
     // res.cookie("token", token, { maxAge: 60 * 60 * 1000 }); //maxAge:max kitne time ke liye ye token rhega.(in msec)
     res.cookie("token", token, {
-      maxAge: 60 * 60 * 1000, // 1 hour in milliseconds
-      httpOnly: true, // prevents JS access to the cookie
-      sameSite: "lax", // controls cross-site sending of cookie
-      // secure: true,        // enable this if using HTTPS
+      httpOnly: true,
+      secure: process.env.NODE_ENV === "production",
+      sameSite: process.env.NODE_ENV === "production" ? "none" : "lax",
+      maxAge: 7 * 24 * 60 * 60 * 1000, // 7 days
+      domain: undefined,
     });
 
 
