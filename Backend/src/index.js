@@ -21,7 +21,7 @@ app.use(express.json());
 app.use(cookieParser());
 
 // Define routes
-app.use("/health", () => {
+app.use("/health", (res,req) => {
   res.send({
     "success": true,
     "msg":"Deployed Successfully"
