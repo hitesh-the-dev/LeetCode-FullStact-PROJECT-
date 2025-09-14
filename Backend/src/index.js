@@ -21,12 +21,20 @@ app.use(express.json());
 app.use(cookieParser());
 
 // Define routes
+app.use("/health", () => {
+  res.send({
+    "success": true,
+    "msg":"Deployed Successfully"
+  })
+})
 app.use("/user", authRouter);
 app.use("/problem", problemRouter);
 app.use("/submission", submitRouter);
 
 // Use PORT from environment or fallback to 3000 locally
 const PORT = process.env.PORT || 3000;
+
+
 
 const InitalizeConnection = async () => {
   try {
