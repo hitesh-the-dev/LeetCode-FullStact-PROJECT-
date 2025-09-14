@@ -12,7 +12,7 @@ const cors = require("cors");
 // Setup CORS for your frontend URLs
 app.use(
   cors({
-    origin: ["http://localhost:5173", "http://localhost:5174"], // your frontend dev URLs
+    origin: process.env.FRONTEND_URL, // your frontend dev URLs
     credentials: true,
   })
 );
