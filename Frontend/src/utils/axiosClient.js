@@ -1,7 +1,7 @@
 import axios from "axios"
 
 const axiosClient =  axios.create({
-    baseURL: import.meta.env.VITE_APP_NAME,
+    baseURL: import.meta.env.VITE_APP_URL,
     // i.e ab apn ko complete url likhne ki requirement nhi hai ab sidha likho /user/register
     withCredentials: true,
     headers: {
