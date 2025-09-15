@@ -256,15 +256,15 @@ function ProfilePage() {
               <div className="flex-1 space-y-3">
                 <div className="bg-[#1a1a1a] rounded-lg p-4 flex justify-between items-center">
                   <span className="text-cyan-400 font-medium">Easy</span>
-                  <span className="text-white font-semibold">{difficultyStats.easySolved}/899</span>
+                  <span className="text-white font-semibold">{difficultyStats.easySolved}</span>
                 </div>
                 <div className="bg-[#1a1a1a] rounded-lg p-4 flex justify-between items-center">
                   <span className="text-yellow-400 font-medium">Med.</span>
-                  <span className="text-white font-semibold">{difficultyStats.mediumSolved}/1918</span>
+                  <span className="text-white font-semibold">{difficultyStats.mediumSolved}</span>
                 </div>
                 <div className="bg-[#1a1a1a] rounded-lg p-4 flex justify-between items-center">
                   <span className="text-red-400 font-medium">Hard</span>
-                  <span className="text-white font-semibold">{difficultyStats.hardSolved}/869</span>
+                  <span className="text-white font-semibold">{difficultyStats.hardSolved}</span>
                 </div>
               </div>
             </div>
@@ -274,7 +274,7 @@ function ProfilePage() {
           <div className="bg-[#262626] rounded-lg p-6">
             <div className="flex justify-between items-center mb-4">
               <h3 className="text-lg font-semibold">
-                Total {totalSubmissions} submissions in the past one year
+                Total {difficultyStats.easySolved + difficultyStats.mediumSolved + difficultyStats.hardSolved} submissions in the past one year
               </h3>
               <select className="bg-gray-700 text-white px-3 py-1 rounded text-sm border border-gray-600">
                 <option>Current</option>
