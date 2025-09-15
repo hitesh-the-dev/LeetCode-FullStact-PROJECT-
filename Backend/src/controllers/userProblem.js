@@ -89,7 +89,7 @@ const createProblem = async (req, res) => {
     });
 
     console.log("Problem created successfully:", userProblem._id);
-    res.status(201).json({ 
+    res.status(201).json({
       message: "Problem Saved Successfully",
       problemId: userProblem._id
     });
@@ -383,7 +383,7 @@ const submittedProblem = async(req,res)=>{
   catch(err){
      console.error("Error fetching submissions:", err);
      console.error("Error stack:", err.stack);
-     return res.status(500).json({ 
+     return res.status(500).json({
        error: "Internal Server Error",
        details: err.message,
        stack: err.stack
@@ -414,9 +414,9 @@ const createTestSubmission = async(req,res)=>{
   try{
     const userId = req.result._id;
     const { problemId } = req.body;
-    
+
     console.log("Creating test submission for userId:", userId, "problemId:", problemId);
-    
+
     const testSubmission = await Submission.create({
       userId,
       problemId,
@@ -428,7 +428,7 @@ const createTestSubmission = async(req,res)=>{
       runtime: 0.001,
       memory: 1000
     });
-    
+
     console.log("Test submission created:", testSubmission._id);
     return res.status(200).json({ message: "Test submission created", submission: testSubmission });
   }
@@ -442,15 +442,15 @@ const createTestSubmission = async(req,res)=>{
 const getAllUserSubmissions = async(req,res)=>{
   try{
     const userId = req.result._id;
-    
+
     console.log("Fetching all submissions for userId:", userId);
-    
+
     const submissions = await Submission.find({userId: userId})
       .select('createdAt status')
       .sort({createdAt: 1});
-    
+
     console.log("Found submissions:", submissions.length);
-    
+
     return res.status(200).json(submissions);
   }
   catch(err){

@@ -44,7 +44,7 @@ function ProfilePage() {
   const generateHeatmapFromSubmissions = (submissions) => {
     const data = [];
     const today = new Date();
-    
+
     // Create a map of submission counts by date
     const submissionCounts = {};
     submissions.forEach(submission => {
@@ -83,14 +83,14 @@ function ProfilePage() {
   const getMonthLabels = () => {
     const months = [];
     const today = new Date();
-    
+
     // Generate 12 months starting from 12 months ago
     for (let i = 11; i >= 0; i--) {
       const date = new Date(today);
       date.setMonth(date.getMonth() - i);
       months.push(date.toLocaleDateString('en-US', { month: 'short' }));
     }
-    
+
     return months;
   };
 
@@ -109,21 +109,21 @@ function ProfilePage() {
 
   const getMaxStreak = () => {
     if (submissions.length === 0) return 0;
-    
+
     const submissionDates = submissions
       .map(s => new Date(s.createdAt).toISOString().split('T')[0])
       .sort()
       .filter((date, index, arr) => arr.indexOf(date) === index); // Remove duplicates
-    
+
     let maxStreak = 0;
     let currentStreak = 1;
-    
+
     for (let i = 1; i < submissionDates.length; i++) {
       const prevDate = new Date(submissionDates[i - 1]);
       const currDate = new Date(submissionDates[i]);
       const diffTime = currDate - prevDate;
       const diffDays = Math.ceil(diffTime / (1000 * 60 * 60 * 24));
-      
+
       if (diffDays === 1) {
         currentStreak++;
       } else {
@@ -131,7 +131,7 @@ function ProfilePage() {
         currentStreak = 1;
       }
     }
-    
+
     return Math.max(maxStreak, currentStreak);
   };
 
@@ -211,7 +211,7 @@ function ProfilePage() {
               </div>
               <span className="text-white text-sm">{user.firstName}</span>
             </div>
-            <button 
+            <button
               onClick={handleLogout}
               className="bg-gray-700 text-white px-4 py-1 rounded text-sm hover:bg-gray-600"
             >
@@ -274,7 +274,7 @@ function ProfilePage() {
           <div className="bg-[#262626] rounded-lg p-6">
             <div className="flex justify-between items-center mb-4">
               <h3 className="text-lg font-semibold">
-                {totalSubmissions} submissions in the past one year
+                Total {totalSubmissions} submissions in the past one year
               </h3>
               <select className="bg-gray-700 text-white px-3 py-1 rounded text-sm border border-gray-600">
                 <option>Current</option>
@@ -283,7 +283,7 @@ function ProfilePage() {
             <div className="text-sm text-gray-400 mb-4">
               Total active days: {activeDays} • Max streak: {maxStreak}
             </div>
-            
+
             {/* Heatmap Grid - Exact LeetCode Style */}
             <div className="heatmap-grid">
               {heatmapData.map((day, index) => (
@@ -294,7 +294,7 @@ function ProfilePage() {
                 />
               ))}
             </div>
-            
+
             {/* Month Labels - LeetCode Style */}
             <div className="heatmap-month-labels">
               {getMonthLabels().map((month, index) => (
@@ -303,7 +303,7 @@ function ProfilePage() {
                 </span>
               ))}
             </div>
-            
+
             {/* Legend - LeetCode Style */}
             <div className="heatmap-legend">
               <span>Less</span>
