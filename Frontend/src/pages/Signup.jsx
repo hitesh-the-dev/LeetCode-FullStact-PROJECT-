@@ -112,7 +112,7 @@ function Signup() {
         <AlgoArenaLogo size="large" />
       </div>
 
-      <div className="card w-96 rounded-[50px]  bg-[#fcfcfc] shadow-[20px_20px_60px_#bebebe,-20px_-20px_60px_#ffffff] overflow-y-hidden">
+      <div className="card w-96 rounded-[50px]  bg-[#f3eeee] shadow-[20px_20px_60px_#bebebe,-20px_-20px_60px_#ffffff] overflow-y-hidden">
         <div className="card-body">
           <h2 className="card-title justify-center text-3xl mb-6 text-black">Sign Up</h2> {/* Added mb-6 for spacing */}
           <form onSubmit={handleSubmit(onSubmit)}> {/* i.e handleSubmit(CallBack) */}
