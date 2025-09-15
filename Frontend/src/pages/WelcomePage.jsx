@@ -52,7 +52,7 @@ function WelcomePage() {
                   <div className="w-8 h-5 bg-white rounded-t-full absolute bottom-0"></div>
                 </div>
                 <div>
-                  <div className="text-white font-semibold">Hitesh Rathore</div>
+                  <div className="text-white font-semibold">{user.firstName}</div>
                   <div className="text-blue-300 text-sm">My Profile</div>
                 </div>
               </div>
