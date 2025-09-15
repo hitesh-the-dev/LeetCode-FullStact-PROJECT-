@@ -101,7 +101,7 @@ function Signup() {
   };
 
   return (
-    <div className="min-h-screen flex flex-col items-center justify-center p-4 bg-base-200"> {/* Added a light bg for contrast */}
+    <div className="h-screen flex flex-col items-center justify-center p-4 bg-base-200 overflow-y-hidden relative"> {/* Added a light bg for contrast */}
 
       <div style={{ width: '100%', height: '600px', position: 'fixed' }}>
          <Galaxy />
@@ -112,7 +112,7 @@ function Signup() {
         <AlgoArenaLogo size="large" />
       </div>
 
-      <div className="card w-96 rounded-[50px]  bg-[#fcfcfc] shadow-[20px_20px_60px_#bebebe,-20px_-20px_60px_#ffffff]">
+      <div className="card w-96 rounded-[50px]  bg-[#fcfcfc] shadow-[20px_20px_60px_#bebebe,-20px_-20px_60px_#ffffff] overflow-y-hidden">
         <div className="card-body">
           <h2 className="card-title justify-center text-3xl mb-6 text-black">Sign Up</h2> {/* Added mb-6 for spacing */}
           <form onSubmit={handleSubmit(onSubmit)}> {/* i.e handleSubmit(CallBack) */}
@@ -207,7 +207,7 @@ function Signup() {
               )}
             </div>
 
-            
+
 
             {/* Submit Button */}
             <div className="form-control mt-8 flex justify-center">
